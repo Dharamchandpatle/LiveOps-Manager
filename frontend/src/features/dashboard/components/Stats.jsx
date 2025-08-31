@@ -61,3 +61,4 @@ export function Stats({ refreshInterval = 60000 }) {
     </motion.div>
   );
 }
+

@@ -1,10 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App.jsx';
+import App from './App';
 import './index.css';
+import { PeopleProvider } from './context/PeopleContext';
+import { AuthProvider } from './context/AuthContext';
+import { ClientProvider } from './context/ClientContext';
+import { TaskProvider } from './context/TaskContext';
+import "leaflet/dist/leaflet.css";
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <AuthProvider>
+      <PeopleProvider>
+        <ClientProvider>
+          <TaskProvider>
+            <App />
+          </TaskProvider>
+        </ClientProvider>
+      </PeopleProvider>
+    </AuthProvider>
+  </React.StrictMode>,
 );

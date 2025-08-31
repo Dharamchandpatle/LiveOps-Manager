@@ -1,21 +1,25 @@
-import { motion } from 'framer-motion';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
-import { MapPin, Minus, Plus } from 'lucide-react';
-import { useCallback, useState } from 'react';
-import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet';
+import { motion } from "framer-motion";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
+import { MapPin, Minus, Plus } from "lucide-react";
+import { useCallback, useState } from "react";
+import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 
-// Fix for default marker icons
+// ✅ Fix for default marker icons
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
-  iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
-  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
-  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+  iconRetinaUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png",
+  iconUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
+  shadowUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
 });
 
+// ✅ Map Controls Component
 function MapControls({ onZoomIn, onZoomOut, onCenter }) {
   return (
-    <div className="absolute right-4 top-4 flex flex-col gap-2">
+    <div className="absolute right-4 top-20 flex flex-col gap-2 z-[1000]">
       <button
         onClick={onZoomIn}
         className="p-2 bg-white rounded-lg shadow-lg hover:bg-gray-50 transition-colors"
@@ -38,12 +42,13 @@ function MapControls({ onZoomIn, onZoomOut, onCenter }) {
   );
 }
 
+// ✅ Activity Panel Component
 function ActivityPanel({ date, activities = [] }) {
   return (
     <motion.div
       initial={{ x: -20, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
-      className="absolute top-4 left-4 z-10 bg-white rounded-lg shadow-lg p-4 w-80"
+      className="absolute top-4 left-4 z-[1000] bg-white rounded-lg shadow-lg p-4 w-80"
     >
       <div className="flex items-center justify-between mb-4">
         <h3 className="font-medium">People Activity</h3>
@@ -70,6 +75,7 @@ function ActivityPanel({ date, activities = [] }) {
   );
 }
 
+// ✅ Map Component
 function MapComponent({ center, zoom, markers = [] }) {
   const map = useMap();
 
@@ -98,29 +104,36 @@ function MapComponent({ center, zoom, markers = [] }) {
   );
 }
 
-export function Map({ center = [20.5937, 78.9629], zoom = 5, markers = [] }) {
-  const [mapInstance, setMapInstance] = useState(null);
+// ✅ Main Export Map with fixed height & alignment
+export function Map({
+  center = [20.5937, 78.9629],
+  zoom = 5,
+  markers = [],
+}) {
   const [isLoading, setIsLoading] = useState(true);
 
-  const onMapReady = useCallback((map) => {
-    setMapInstance(map);
+  const onMapReady = useCallback(() => {
     setIsLoading(false);
   }, []);
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="h-[600px] relative bg-gray-100 rounded-lg overflow-hidden"
+      className="relative bg-gray-100 rounded-lg overflow-hidden"
+      style={{ height: "600px", width: "100%" }} // ✅ Full width page, fixed height
     >
+      {/* Left Activity Panel */}
       <ActivityPanel date={new Date().toLocaleDateString()} />
-      
+
+      {/* Loading Spinner */}
       {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-90 z-50">
+        <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-90 z-[2000]">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
         </div>
       )}
 
+      {/* Map */}
       <MapContainer
         center={center}
         zoom={zoom}
@@ -129,7 +142,7 @@ export function Map({ center = [20.5937, 78.9629], zoom = 5, markers = [] }) {
         whenReady={onMapReady}
       >
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <MapComponent center={center} zoom={zoom} markers={markers} />

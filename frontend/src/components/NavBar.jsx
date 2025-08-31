@@ -46,7 +46,7 @@ export function NavBar() {
             <Button
               variant="outline"
               size="sm"
-              className="auth-button border-white/20 text-white hover:bg-white/10 backdrop-blur-sm"
+              className="auth-button relative border-white/20 text-white hover:bg-white/10 backdrop-blur-sm"
               onClick={() => {
                 localStorage.removeItem('token');
                 navigate('/login');
