@@ -6,6 +6,7 @@ const menuItems = [
   { id: 'people', name: 'People', icon: Users, path: '/dashboard/people' },
   { id: 'client', name: 'Client', icon: Briefcase, path: '/dashboard/client' },
   { id: 'task', name: 'Task', icon: CheckSquare, path: '/dashboard/task' },
+  { id: 'payroll', name: 'Payroll', icon: CheckSquare, path: '/features/payroll/pages/PayrollDashboard.jsx' },
   { id: 'reports', name: 'Reports', icon: FileText, path: '/dashboard/reports', hasArrow: true },
   { id: 'reimbursement', name: 'Reimbursement', icon: DollarSign, path: '/dashboard/reimbursement', hasArrow: true },
   { id: 'forms', name: 'Forms', icon: ClipboardList, path: '/dashboard/forms' },

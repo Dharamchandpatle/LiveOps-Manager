@@ -1,11 +1,12 @@
 import gsap from 'gsap';
 import { CircleDot, MapIcon, Navigation2Icon, Route } from 'lucide-react';
 import { useEffect, useRef } from 'react';
-import { Button } from './components/Button';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from './components/Card';
-import { NavBar } from './components/NavBar';
+import { Button } from '../components/Button';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../components/Card';
+// import { NavBar } from './components/NavBar';
 
-export default function Home() {
+
+function Hero() {
   const mainRef = useRef(null);
   const headingRef = useRef(null);
   const subheadingRef = useRef(null);
@@ -244,7 +245,7 @@ export default function Home() {
       </div>
 
       {/* Navigation */}
-      <NavBar></NavBar>
+      {/* <NavBar></NavBar> */}
 
       {/* Main Content */}
       <section
@@ -374,6 +375,8 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>
+  );
 }
+
+export default Hero;

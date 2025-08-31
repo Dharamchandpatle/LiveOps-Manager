@@ -5,7 +5,6 @@ import { ToastProvider } from './features/dashboard/components';
 import PeopleDashboard from './features/people/pages/PeopleDashboard';
 import PersonDetails from './features/people/pages/PersonDetails';
 import AddPeople from './features/people/pages/AddPeople';
-import Home from './Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Client from './pages/Client';
@@ -16,6 +15,9 @@ import AddTask from './features/task/pages/AddTask';
 import UploadTask from './features/task/pages/UploadTask';
 import ManualClose from './features/task/pages/ManualClose';
 import NearbySearch from './components/NearbySearch';
+import Hero from './pages/Hero';
+import PayrollDashboard from './features/payroll/pages/Payrolldashboard';
+import ReqClient from './features/payroll/components/ReqClient';
 
 
 function App() {
@@ -27,7 +29,12 @@ function App() {
           <main className="flex-1 ml-64">
             <NavBar />
             <Routes>
+              
+              <Route path="/paydash" element={<PayrollDashboard />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/Request/Client" element={<ReqClient />} />
+              
+              <Route path="/hero" element={<Hero />} />
               <Route path="/register" element={<Register />} />
               
               <Route path="/dashboard/people" element={<PeopleDashboard />} />

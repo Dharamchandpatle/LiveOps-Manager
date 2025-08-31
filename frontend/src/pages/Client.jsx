@@ -35,9 +35,9 @@ const Client = () => {
           <div className="mb-6">
             <p className="text-gray-600 dark:text-gray-400">Today's Stats: 0</p>
           </div>
-          <div className="grid grid-cols-4 gap-4 mb-6 text-gray-900 dark:text-white">
+          <div className="grid grid-cols-4 gap-4  mb-6  text-gray-900 dark:text-white">
             {stats.map(stat => (
-              <div key={stat.label} className="text-center">
+              <div key={stat.label} className="text-center rounded-xl border-2 p-2">
                 <p className="text-2xl font-bold">{stat.value}</p>
                 <p className="text-sm text-gray-600 dark:text-gray-400">{stat.label}</p>
               </div>
@@ -45,11 +45,11 @@ const Client = () => {
           </div>
           <div className="flex space-x-4 mb-6">
             <button
-              onClick={() => navigate('/dashboard/add-client')}
+              onClick={() => navigate('/features/payroll/components/ReqClient')}
               className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
             >
               <Plus size={20} className="mr-2" />
-              Add Client
+              Add Request
             </button>
             <button className="flex items-center px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-md text-gray-900 dark:text-white">
               <Upload size={20} className="mr-2" />
